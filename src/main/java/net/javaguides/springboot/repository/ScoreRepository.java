@@ -10,12 +10,7 @@ public interface ScoreRepository extends JpaRepository<Score,Long>{
 
 	List<Score> findTop10ByOrderByScoreDesc();
 
-	boolean existsByScoreAndTiles(int score, String tiles);
-	
-	
-
-	
-		
+	boolean existsByScoreAndTiles(int score, String tiles);	
 	 
 	}
 
