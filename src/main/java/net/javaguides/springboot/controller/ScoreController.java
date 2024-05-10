@@ -20,22 +20,18 @@ import net.javaguides.springboot.service.ScoreService;
 @RestController
 public class ScoreController {
 
-    // Example service for saving scores to database
     @Autowired
     private ScoreService scoreService;
 
     @PostMapping("/api/scores")
     public ResponseEntity<String> saveScore(@RequestBody ScoreRequest scoreRequest) {
-        // Extract score data from the request body
-    	
+  	
         int score = scoreRequest.getScore();
         String tiles = scoreRequest.getTiles();
         
-        // Log the received ScoreRequest object and its properties
         System.out.println("Received ScoreRequest: " + scoreRequest);
         System.out.println("Score: " + score);
         System.out.println("Tiles: " + tiles);
-        System.out.println("###############"+score+"%%%%%"+tiles);
         
         boolean exists=scoreService.checkIfRecordExists(score,tiles);
         if (!exists) {              	
@@ -46,8 +42,7 @@ public class ScoreController {
         	return ResponseEntity.ok("not");
         }     
     }
-    
-    
+        
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/api/top-scores")
     public ResponseEntity<List<Score>> getTopScores() {
